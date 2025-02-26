@@ -4,3 +4,14 @@
 * You can see the action runs in the [Actions View](TBD).
 * You can view Security findings in the [advanced security tab](TBD).
 
+## Architecture
+
+Most devsecops scanners follow a similar structure:
+
+```mermaid
+flowchart LR
+  Package[GitHub/Docker/Code]
+  Scanner[Security Scanner]
+  Artifact[Security Reports]
+  Package --> Scanner --> Artifact
+```
