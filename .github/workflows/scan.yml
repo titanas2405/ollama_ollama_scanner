@@ -51,14 +51,14 @@ jobs:
           #only-fixed: true # filter to fixed CVEs
           exit-code: false  # fail or not based on CVEs found?
           sarif-file: sca_scout.sarif
-          output: sbom_scout.spdx.json
+          output: ollama.spdx.json
           format: spdx
 
-      - name: Upload SBOM file as an artifact
+      - name: Upload ollama file as an artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sbom_scout.spdx.json
-          path: sbom_scout.spdx.json
+          name: ollama.spdx.json
+          path: ollama.spdx.json
 
       - name: Upload SARIF file as an artifact
         uses: actions/upload-artifact@v4
@@ -73,5 +73,5 @@ jobs:
           sarif_file: sca_scout.sarif
           category: Security/SCA
 
-      - name: SBOM upload
+      - name: Ollama upload
         uses: advanced-security/spdx-dependency-submission-action@v0.1.1
