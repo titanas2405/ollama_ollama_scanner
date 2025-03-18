@@ -5,10 +5,10 @@ name: ollama/SCA Scan
 on:
   workflow_dispatch:
     inputs:
-      docker_image:
+      docker_image: 'ollama/ollama'
         description: 'The Docker image to scan'
         required: true
-        default: 'appsecco/dvna:sqlite'
+        default: 'ollama/ollama'
 
 jobs:
   scan:
