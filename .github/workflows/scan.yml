@@ -1,11 +1,9 @@
-## Scan a docker image -> get a SARIF/SBOM report using Ollama
-
 name: ollama/SCA Scan
 
 on:
   workflow_dispatch:
     inputs:
-      docker_image: 
+      docker_image:
         description: 'The Docker image to scan'
         required: true
         default: 'ollama/ollama'
@@ -22,12 +20,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Pull the Docker image
         run: docker pull ${{ github.event.inputs.docker_image }}
 
@@ -41,11 +33,11 @@ jobs:
       - name: Upload SARIF file as an artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ollama_scan.sarif
-          path: ollama_scan.sarif
+          name: scout_scan.sarif
+          path: scout_scan.sarif
 
       - name: Upload SARIF file to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ollama_scan.sarif
+          sarif_file: scout_scan.sarif
           category: Security/Ollama
