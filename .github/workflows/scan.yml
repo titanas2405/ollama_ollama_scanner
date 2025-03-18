@@ -5,7 +5,7 @@ name: ollama/SCA Scan
 on:
   workflow_dispatch:
     inputs:
-      docker_image: 'ollama/ollama'
+      docker_image: 
         description: 'The Docker image to scan'
         required: true
         default: 'ollama/ollama'
