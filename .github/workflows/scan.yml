@@ -31,12 +31,12 @@ jobs:
       - name: Pull the Docker image
         run: docker pull ${{ github.event.inputs.docker_image }}
 
-      - name: Run Ollama Scan
-        run: |
-          docker run --rm \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          ollama/ollama scan ${{ github.event.inputs.docker_image }} \
-          --output sarif --output-file ollama_scan.sarif
+      - name: Run Docker Scout Scan
+        uses: docker/scout-action@v1
+        with:
+          command: cves,recommendations,compare,sbom
+          image: ${{ github.event.inputs.docker_image }}
+          sarif-file: scout_scan.sarif
 
       - name: Upload SARIF file as an artifact
         uses: actions/upload-artifact@v4
